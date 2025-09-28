@@ -44,3 +44,50 @@ alumniForm.onsubmit = (e) => {
   modal.style.display = "none";
   loginBtn.textContent = "Profile";
 };
+// Modal Elements
+const loginBtn = document.getElementById("loginBtn");
+const model = document.getElementById("loginModel");
+const closeBtn = document.querySelector(".close");
+const nextBtn = document.getElementById("nextBtn");
+const roleSelect = document.getElementById("role");
+const studentForm = document.getElementById("studentForm");
+const alumniForm = document.getElementById("alumniForm");
+
+// Open Modal
+loginBtn.onclick = () => {
+  modal.style.display = "flex";
+};
+
+// Close Modal
+closeBtn.onclick = () => {
+  modal.style.display = "none";
+  resetForms();
+};
+
+// Close on outside click
+window.onclick = (e) => {
+  if (e.target === modal) {
+    modal.style.display = "none";
+    resetForms();
+  }
+};
+
+// Next Button
+nextBtn.onclick = () => {
+  const role = roleSelect.value;
+  if (role === "student") {
+    document.getElementById("step1").classList.add("hidden");
+    studentForm.classList.remove("hidden");
+  } else if (role === "alumni") {
+    document.getElementById("step1").classList.add("hidden");
+    alumniForm.classList.remove("hidden");
+  }
+};
+
+// Reset forms
+function resetForms() {
+  document.getElementById("step1").classList.remove("hidden");
+  studentForm.classList.add("hidden");
+  alumniForm.classList.add("hidden");
+  roleSelect.value = "";
+}
